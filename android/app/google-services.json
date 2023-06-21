@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "188035146333",
+    "project_id": "recycling-bonus",
+    "storage_bucket": "recycling-bonus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188035146333:android:6ab73070593e55c73723b4",
+        "android_client_info": {
+          "package_name": "com.example.butterfly_touch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "188035146333-iv41s4spt6rn4vjulqm32b0bfjuo6c5h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtKS4CeLLJccdz1FLuoRGo05FnBXFrHGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "188035146333-2tgu4278l75nqsfu8v7b14a6la1au3cd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "188035146333-g9gp6qhcvnufelc6em3gc2vaiuq18lcr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.recyclingBonus"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188035146333:android:5fdbec1516eb57c03723b4",
+        "android_client_info": {
+          "package_name": "com.example.recycling_bonus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "188035146333-iv41s4spt6rn4vjulqm32b0bfjuo6c5h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtKS4CeLLJccdz1FLuoRGo05FnBXFrHGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "188035146333-2tgu4278l75nqsfu8v7b14a6la1au3cd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "188035146333-g9gp6qhcvnufelc6em3gc2vaiuq18lcr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.recyclingBonus"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
