@@ -16,7 +16,7 @@ class _UserHomeState extends State<UserHome> {
     const UserScreen(),
     const UserScan(),
   ];
-  var screenIndex = 1;
+  var screenIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class _UserHomeState extends State<UserHome> {
         selectedFontSize: 0,
         currentIndex: screenIndex,
         selectedItemColor: Colors.grey,
-        unselectedItemColor: Colors.black,
+        unselectedItemColor: Colors.green,
         onTap: (value) {
           setState(() {
             screenIndex = value;

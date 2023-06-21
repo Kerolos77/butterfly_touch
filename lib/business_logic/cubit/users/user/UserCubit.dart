@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../data/firecase/firebase_reposatory.dart';
-import '../../../../data/local/cache_helper.dart';
 import 'UserStates.dart';
 
 class UserCubit extends Cubit<UserStates> {
@@ -30,19 +29,6 @@ class UserCubit extends Cubit<UserStates> {
     });
   }
 
-  void getUserInfractionsData() {
-    // emit(GetUserLoadingState());
-
-
-  }
-
-  void setUserDataInCash() {
-    if (user!.isNotEmpty) {
-      user!.forEach((key, value) {
-        CacheHelper.putData(key: key, value: value);
-      });
-    }
-  }
 
   void logout() {
     _firebaseReposatory.logout();

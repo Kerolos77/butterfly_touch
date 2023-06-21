@@ -43,7 +43,7 @@ class _AdminHomeState extends State<AdminHome> {
         selectedFontSize: 0,
         currentIndex: screenIndex,
         selectedItemColor: Colors.grey,
-        unselectedItemColor: Colors.black,
+        unselectedItemColor: Colors.green,
         onTap: (value) {
           setState(() {
             screenIndex = value;
