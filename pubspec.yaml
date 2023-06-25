@@ -28,6 +28,8 @@ dependencies:
   double_back_to_close_app: ^2.1.0
   conditional_builder_null_safety: ^0.0.6
   font_awesome_flutter: ^10.4.0
+  scan: ^1.6.0
+  images_picker: ^1.2.11
 
 
 dev_dependencies:

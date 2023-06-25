@@ -1,5 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.butterfly_touch">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <meta-data
+        android:name="flutterEmbedding"
+        android:value="2" />
    <application
         android:label="Butterfly Touch"
         android:name="${applicationName}"

@@ -24,11 +24,11 @@ class Registration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    firstNameController.text = 'kerolos1';
-    lastNameController.text = 'faie1';
-    emailController.text = 'kokofaie7@gmail.com';
-    passwordController.text = '11AAaa@@';
-    confirmPasswordController.text = '11AAaa@@';
+    // firstNameController.text = 'kerolos1';
+    // lastNameController.text = 'faie1';
+    // emailController.text = 'kokofaie7@gmail.com';
+    // passwordController.text = '11AAaa@@';
+    // confirmPasswordController.text = '11AAaa@@';
     return BlocProvider(
       create: (BuildContext context) => RegistrationCubit(),
       child: BlocConsumer<RegistrationCubit, RegistrationState>(

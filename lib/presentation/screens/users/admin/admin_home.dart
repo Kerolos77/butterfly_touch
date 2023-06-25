@@ -17,7 +17,7 @@ class _AdminHomeState extends State<AdminHome> {
     Admin(),
     AdminScan(),
   ];
-  var screenIndex = 1;
+  var screenIndex = 0;
 
   @override
   Widget build(BuildContext context) {
