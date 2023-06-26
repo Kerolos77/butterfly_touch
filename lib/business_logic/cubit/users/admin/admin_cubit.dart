@@ -1,8 +1,7 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../data/firecase/firebase_reposatory.dart';
-import 'AdminStates.dart';
+import 'admin_states.dart';
 
 class AdminCubit extends Cubit<AdminStates> {
   AdminCubit() : super(InitialAdminState());
@@ -28,11 +27,6 @@ class AdminCubit extends Cubit<AdminStates> {
   //     emit(GetAdminErrorState(error.toString()));
   //   });
   // }
-
-
-
-
-
 
   void logout() {
     _firebaseReposatory.logout();

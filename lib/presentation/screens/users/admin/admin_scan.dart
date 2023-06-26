@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:images_picker/images_picker.dart';
 import 'package:scan/scan.dart';
 
-import '../../../widgets/global/default_text/default_text.dart';
 import 'admin.dart';
 
 class AdminScan extends StatefulWidget {

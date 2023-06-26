@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../data/firecase/firebase_reposatory.dart';
-import 'UserStates.dart';
+import 'user_states.dart';
 
 class UserCubit extends Cubit<UserStates> {
   UserCubit() : super(InitialUserState());

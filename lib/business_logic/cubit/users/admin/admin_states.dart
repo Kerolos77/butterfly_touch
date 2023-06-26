@@ -13,9 +13,9 @@ class GetAdminErrorState extends AdminStates {
 
   GetAdminErrorState(this.error);
 }
+
 class ChangeObscurePassFlagAdminState extends AdminStates {}
 
 class ChangeObscureConfirmFlagAdminState extends AdminStates {}
 
 class LogOutSuccessAdminState extends AdminStates {}
-

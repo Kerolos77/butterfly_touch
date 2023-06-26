@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../business_logic/cubit/users/user/UserCubit.dart';
-import '../../../../business_logic/cubit/users/user/UserStates.dart';
+import '../../../../business_logic/cubit/users/user/user_cubit.dart';
+import '../../../../business_logic/cubit/users/user/user_states.dart';
 import '../../../../data/local/cache_helper.dart';
 import '../../../widgets/global/default_text/default_text.dart';
 import '../../../widgets/global/toast.dart';

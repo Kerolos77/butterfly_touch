@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../business_logic/cubit/users/admin/AdminCubit.dart';
-import '../../../../business_logic/cubit/users/admin/AdminStates.dart';
+import '../../../../business_logic/cubit/users/admin/admin_cubit.dart';
+import '../../../../business_logic/cubit/users/admin/admin_states.dart';
 import '../../../../data/local/cache_helper.dart';
 import '../../../widgets/global/default_text/default_text.dart';
 import '../../../widgets/global/toast.dart';
