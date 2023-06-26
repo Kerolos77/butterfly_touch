@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:images_picker/images_picker.dart';
 import 'package:scan/scan.dart';
-
-import 'admin.dart';
 
 class AdminScan extends StatefulWidget {
   const AdminScan({super.key});
@@ -50,44 +47,20 @@ class _AdminScanState extends State<AdminScan> {
             Text('Running on: $_platformVersion\n'),
             Wrap(
               children: [
-//               Container(
-//                 width: 250, // custom wrap size
-//                 height: 250,
-//                 child: ScanView(
-//                   controller: controller,
-// // custom scan area, if set to 1.0, will scan full area
-//                   scanAreaScale: .7,
-//                   scanLineColor: Colors.green.shade400,
-//
-//                   onCapture: (data) {
-//                     // do something
-//                   },
-//                 ),
-//               ),
-                ElevatedButton(
-                  child: Text("parse from image"),
-                  onPressed: () async {
-                    List<Media>? res = await ImagesPicker.openCamera();
-                    print('----------------------------- $res');
-                    if (res != null) {
-                      String? str = await Scan.parse(res[0].path);
-                      print('********************************* $str');
-                      if (str != null) {
-                        setState(() {
-                          qrcode = str;
-                        });
-                      }
-                    }
-                  },
-                ),
-                ElevatedButton(
-                  child: Text('go scan page'),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) {
-                          return Admin();
-                        }));
-                  },
+                Container(
+                  width: 250, // custom wrap size
+                  height: 250,
+                  child: ScanView(
+                    controller: controller,
+// custom scan area, if set to 1.0, will scan full area
+                    scanAreaScale: .7,
+                    scanLineColor: Colors.green.shade400,
+                    onCapture: (data) {
+                      setState(() {
+                        qrcode = data;
+                      });
+                    },
+                  ),
                 ),
               ],
             ),
