@@ -33,6 +33,9 @@ dependencies:
   interactive_bottom_sheet: ^0.1.5
   rounded_loading_button: ^2.1.0
   flutter_switch: ^0.3.2
+  intl: ^0.18.1
+  nanoid: ^1.0.0
+  ticket_material: ^0.3.1
 
 
 dev_dependencies:
