@@ -1,3 +1,4 @@
+import 'package:butterfly_touch/data/models/barcode_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -55,5 +56,27 @@ class FirebaseReposatory {
 
   Future<DocumentSnapshot<Map<String, dynamic>>> getUserData() {
     return firebase.collection('users').doc(constUid).get();
+  }
+
+  Future<void> createBarcode({
+    required String barcode,
+    required bool isGood,
+    required String description,
+  }) async {
+    BarcodeModel barcodeDataModel = BarcodeModel(
+      barcode: barcode,
+      isGood: isGood,
+      description: description,
+    );
+    return firebase
+        .collection('barcodes')
+        .doc(barcode)
+        .set(barcodeDataModel.toMap());
+  }
+
+  Future<void> deleteBarcode({
+    required String barcode,
+  }) async {
+    return firebase.collection('barcodes').doc(barcode).delete();
   }
 }

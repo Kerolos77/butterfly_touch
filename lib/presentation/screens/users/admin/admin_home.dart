@@ -1,7 +1,9 @@
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../../../business_logic/cubit/users/admin/admin_cubit.dart';
 import 'admin.dart';
 import 'admin_scan.dart';
 
@@ -14,8 +16,11 @@ class AdminHome extends StatefulWidget {
 
 class _AdminHomeState extends State<AdminHome> {
   var screens = [
-    Admin(),
-    AdminScan(),
+    BlocProvider(
+      create: (BuildContext context) => AdminCubit(),
+      child: const Admin(),
+    ),
+    const AdminScan(),
   ];
   var screenIndex = 1;
 

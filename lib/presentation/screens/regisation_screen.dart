@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../presentation/screens/users/admin/admin_home.dart';
-import '../../presentation/screens/users/user/user_home.dart';
+
 import '../../business_logic/cubit/regidtration_cubit/registration_cubit.dart';
 import '../../business_logic/cubit/regidtration_cubit/registration_states.dart';
 import '../../data/local/cache_helper.dart';
+import '../../presentation/screens/users/admin/admin_home.dart';
+import '../../presentation/screens/users/user/user_home.dart';
 import '../widgets/global/logo.dart';
 import '../widgets/global/toast.dart';
 import '../widgets/registration/login_container.dart';
@@ -19,16 +20,12 @@ class Registration extends StatelessWidget {
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
+
   var formKey = GlobalKey<FormState>();
   bool flag = false;
 
   @override
   Widget build(BuildContext context) {
-    // firstNameController.text = 'kerolos1';
-    // lastNameController.text = 'faie1';
-    // emailController.text = 'kokofaie7@gmail.com';
-    // passwordController.text = '11AAaa@@';
-    // confirmPasswordController.text = '11AAaa@@';
     return BlocProvider(
       create: (BuildContext context) => RegistrationCubit(),
       child: BlocConsumer<RegistrationCubit, RegistrationState>(

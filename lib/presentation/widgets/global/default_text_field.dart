@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget registrationTextField({
+Widget defaultTextField({
   required TextEditingController control,
   required TextInputType type,
   required String text,
@@ -11,6 +11,7 @@ Widget registrationTextField({
   GestureTapCallback? onTape,
   FormFieldValidator? validate,
   Color iconColor = Colors.black,
+  var maxLines = 1,
 }) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,6 +33,7 @@ Widget registrationTextField({
         onChanged: onchange,
         onTap: onTape,
         validator: validate,
+        maxLines: maxLines,
         onFieldSubmitted: onSubmit,
         cursorColor: Colors.black,
         style: GoogleFonts.roboto(fontSize: 14, color: Colors.black),

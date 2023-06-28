@@ -25,55 +25,54 @@ class _AdminState extends State<Admin> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => AdminCubit(),
-      child: BlocConsumer<AdminCubit, AdminStates>(
-          listener: (BuildContext context, AdminStates state) {
-            if (state is LogOutSuccessAdminState) {
-              showToast(
-                message: 'Log out Successfully',
-              );
-              CacheHelper.removeData(key: "user");
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>  Registration(),
-                    ));
-            }
-          },
-          builder: (BuildContext context, AdminStates state) {
-            AdminCubit AdminCube = AdminCubit.get(context);
+    return BlocConsumer<AdminCubit, AdminStates>(
+        listener: (BuildContext context, AdminStates state) {
+      if (state is LogOutSuccessAdminState) {
+        showToast(
+          message: 'Log out Successfully',
+        );
+        CacheHelper.removeData(key: "user");
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Registration(),
+            ));
+      }
+    }, builder: (BuildContext context, AdminStates state) {
+      AdminCubit AdminCube = AdminCubit.get(context);
 
-            return Scaffold(
-              backgroundColor: Colors.white,
-              appBar: AppBar(
-                backgroundColor: Colors.white,
-                elevation: 0,
-                actions: [
-                  IconButton(onPressed: (){
-                    AdminCube.logout();
-                  }, icon: const Icon(
-                    FontAwesomeIcons.signOutAlt,
-                    size: 20,
-                    color: Colors.green,
-                  ),)
-                ],
+      return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          actions: [
+            IconButton(
+              onPressed: () {
+                AdminCube.logout();
+              },
+              icon: const Icon(
+                FontAwesomeIcons.signOutAlt,
+                size: 20,
+                color: Colors.green,
               ),
-              body: SafeArea(
-                child: RefreshIndicator(
-                  onRefresh: () async {},
-                  child: DoubleBackToCloseApp(
-                    snackBar: SnackBar(
-                      content: defaultText(text: 'Tap back again to leave'),
-                    ),
-                    child: Center(
-                      child: defaultText(text: 'ADMIN', color: Colors.black),
-                    ),
-                  ),
-                ),
+            )
+          ],
+        ),
+        body: SafeArea(
+          child: RefreshIndicator(
+            onRefresh: () async {},
+            child: DoubleBackToCloseApp(
+              snackBar: SnackBar(
+                content: defaultText(text: 'Tap back again to leave'),
               ),
-            );
-          }),
-    );
+              child: Center(
+                child: defaultText(text: 'ADMIN', color: Colors.black),
+              ),
+            ),
+          ),
+        ),
+      );
+    });
   }
 }

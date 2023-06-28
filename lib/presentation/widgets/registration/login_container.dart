@@ -1,5 +1,5 @@
-import 'package:butterfly_touch/presentation/widgets/registration/registration_button.dart';
-import 'package:butterfly_touch/presentation/widgets/registration/registration_text_field.dart';
+import 'package:butterfly_touch/presentation/widgets/global/default_button.dart';
+import 'package:butterfly_touch/presentation/widgets/global/default_text_field.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,7 @@ Widget loginContainer({
     child: SizedBox(
       child: Column(
         children: [
-          registrationTextField(
+          defaultTextField(
             control: emailController,
             text: 'E-mail',
             type: TextInputType.emailAddress,
@@ -28,12 +28,9 @@ Widget loginContainer({
             },
           ),
           SizedBox(
-            height: MediaQuery
-                .of(context)
-                .size
-                .height / 30,
+            height: MediaQuery.of(context).size.height / 30,
           ),
-          registrationTextField(
+          defaultTextField(
               control: passwordController,
               text: 'Password',
               type: TextInputType.emailAddress,
@@ -45,22 +42,18 @@ Widget loginContainer({
                 return null;
               }),
           SizedBox(
-            height: MediaQuery
-                .of(context)
-                .size
-                .height / 30,
+            height: MediaQuery.of(context).size.height / 30,
           ),
           ConditionalBuilder(
             condition: (!flag),
-            builder: (BuildContext context) =>
-                registrationButton(
-                    context: context, text: "Login", onTap: onTap),
-            fallback: (BuildContext context) =>
-            const Center(
+            builder: (BuildContext context) => defaultButton(
+                width: MediaQuery.of(context).size.width,
+                text: "Login",
+                onTap: onTap),
+            fallback: (BuildContext context) => const Center(
               child: CircularProgressIndicator(),
             ),
           ),
-
         ],
       ),
     ),

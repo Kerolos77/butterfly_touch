@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+
+import '../../constants/conestant.dart';
 import '../../presentation/screens/regisation_screen.dart';
 import '../../presentation/screens/users/admin/admin_home.dart';
 import '../../presentation/screens/users/user/user_home.dart';
-
-import '../../constants/conestant.dart';
 import '../widgets/global/logo.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,7 +12,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  int splashtime = 5;
+  int splashtime = 0;
 
   void initState() {
     Future.delayed(Duration(seconds: splashtime), () async {
