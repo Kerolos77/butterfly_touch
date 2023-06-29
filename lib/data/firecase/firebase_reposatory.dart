@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import '../../constants/conestant.dart';
+import '../models/coupon_model.dart';
 import '../models/user_model.dart';
 import 'firebase_options.dart';
 
@@ -29,7 +30,7 @@ class FirebaseReposatory {
       lastName: lastName,
       email: email,
       password: password,
-      score: 0,
+      score: '5',
     );
     return firebase.collection('users').doc(userId).set(userDataModel.toMap());
   }
@@ -84,5 +85,39 @@ class FirebaseReposatory {
     required String barcode,
   }) async {
     return firebase.collection('barcodes').doc(barcode).delete();
+  }
+
+  Future<void> createCoupon({
+    required String coupon,
+    required String startDate,
+    required String endDate,
+  }) async {
+    CouponModel couponDataModel = CouponModel(
+      coupon: coupon,
+      startDate: startDate,
+      endDate: endDate,
+    );
+    return firebase
+        .collection('users')
+        .doc(constUid)
+        .collection('coupons')
+        .doc(coupon)
+        .set(couponDataModel.toMap());
+  }
+
+  Future<QuerySnapshot<Map<String, dynamic>>> getCoupons() {
+    return firebase
+        .collection('users')
+        .doc(constUid)
+        .collection('coupons')
+        .get();
+  }
+
+  void updateScore({
+    required String score,
+  }) {
+    firebase.collection('users').doc(constUid).update({
+      'score': score,
+    });
   }
 }
