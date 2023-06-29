@@ -4,7 +4,7 @@ class UserModel {
   late String lastName;
   late String email;
   late String password;
-  late int score;
+  late String score;
 
   UserModel({
     required this.userId,
