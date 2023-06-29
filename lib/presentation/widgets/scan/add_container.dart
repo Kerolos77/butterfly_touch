@@ -10,6 +10,7 @@ Widget addContainer({
   required double width,
   required double height,
   required String qrcode,
+  bool readOnly = false,
   required TextEditingController descriptionController,
   required void Function() onTapSave,
   required void Function() onTapCancel,
@@ -52,6 +53,7 @@ Widget addContainer({
               height: height / 30,
             ),
             defaultTextField(
+                readOnly: readOnly,
                 control: descriptionController,
                 type: TextInputType.multiline,
                 maxLines: null,

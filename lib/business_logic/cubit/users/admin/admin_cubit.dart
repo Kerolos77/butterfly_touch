@@ -18,16 +18,6 @@ class AdminCubit extends Cubit<AdminStates> {
 
   final FirebaseReposatory _firebaseReposatory = FirebaseReposatory();
 
-  // void getAdminData() {
-  //   emit(GetAdminLoadingState());
-  //   _firebaseReposatory.getUserData().then((value) {
-  //     admin = value.data() as Map<String, dynamic>;
-  //     emit(GetAdminSuccessState());
-  //   }).catchError((error) {
-  //     emit(GetAdminErrorState(error.toString()));
-  //   });
-  // }
-
   void logout() {
     _firebaseReposatory.logout();
     emit(LogOutSuccessAdminState());

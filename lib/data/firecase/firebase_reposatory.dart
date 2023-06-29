@@ -58,6 +58,12 @@ class FirebaseReposatory {
     return firebase.collection('users').doc(constUid).get();
   }
 
+  Future<DocumentSnapshot<Map<String, dynamic>>> getBarcode({
+    required String barcode,
+  }) {
+    return firebase.collection('barcodes').doc(barcode).get();
+  }
+
   Future<void> createBarcode({
     required String barcode,
     required bool isGood,

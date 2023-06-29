@@ -5,6 +5,7 @@ Widget defaultTextField({
   required TextEditingController control,
   required TextInputType type,
   required String text,
+  bool readOnly = false,
   bool obscure = false,
   ValueChanged? onSubmit,
   ValueChanged? onchange,
@@ -27,6 +28,7 @@ Widget defaultTextField({
         ),
       ),
       TextFormField(
+        readOnly: readOnly,
         controller: control,
         keyboardType: type,
         obscureText: obscure,

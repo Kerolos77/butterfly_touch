@@ -1,10 +1,10 @@
+import 'package:butterfly_touch/presentation/screens/users/admin/admin_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../business_logic/cubit/regidtration_cubit/registration_cubit.dart';
 import '../../business_logic/cubit/regidtration_cubit/registration_states.dart';
 import '../../data/local/cache_helper.dart';
-import '../../presentation/screens/users/admin/admin_home.dart';
 import '../../presentation/screens/users/user/user_home.dart';
 import '../widgets/global/logo.dart';
 import '../widgets/global/toast.dart';
@@ -46,7 +46,7 @@ class Registration extends StatelessWidget {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AdminHome(),
+                      builder: (context) => const AdminScan(),
                     ));
               });
             } else {

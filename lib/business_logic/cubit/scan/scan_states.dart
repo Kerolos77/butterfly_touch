@@ -25,3 +25,15 @@ class DeleteBarcodeErrorScanStates extends ScanStates {
 
   DeleteBarcodeErrorScanStates(this.error);
 }
+
+class LogOutSuccessScanStates extends ScanStates {}
+
+class GetBarcodeLoadingScanStates extends ScanStates {}
+
+class GetBarcodeSuccessScanStates extends ScanStates {}
+
+class GetBarcodeErrorScanStates extends ScanStates {
+  late String error;
+
+  GetBarcodeErrorScanStates(this.error);
+}

@@ -13,6 +13,8 @@ class ScanCubit extends Cubit<ScanStates> {
   bool envFlag = true;
   bool showContainerFlag = false;
 
+  Map<String, dynamic>? barcode;
+
   void createBarcode({
     required String barcode,
     required bool isGood,
@@ -21,7 +23,7 @@ class ScanCubit extends Cubit<ScanStates> {
     emit(CreateBarcodeLoadingScanStates());
     _firebaseReposatory
         .createBarcode(
-            barcode: barcode, isGood: isGood, description: description)
+        barcode: barcode, isGood: isGood, description: description)
         .then((value) {
       emit(CreateBarcodeSuccessScanStates());
     }).catchError((error) {
@@ -48,5 +50,20 @@ class ScanCubit extends Cubit<ScanStates> {
   void changeShowContainerFlag(flag) {
     showContainerFlag = flag;
     emit(ChangeEnvState());
+  }
+
+  void logout() {
+    _firebaseReposatory.logout();
+    emit(LogOutSuccessScanStates());
+  }
+
+  void getBarcode({required barcode}) {
+    emit(GetBarcodeLoadingScanStates());
+    _firebaseReposatory.getBarcode(barcode: barcode).then((value) {
+      barcode = value.data() as Map<String, dynamic>;
+      emit(GetBarcodeSuccessScanStates());
+    }).catchError((error) {
+      emit(GetBarcodeErrorScanStates(error));
+    });
   }
 }

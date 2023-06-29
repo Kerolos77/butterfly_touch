@@ -16,7 +16,7 @@ class _UserHomeState extends State<UserHome> {
     const UserScreen(),
     const UserScan(),
   ];
-  var screenIndex = 0;
+  var screenIndex = 1;
 
   @override
   Widget build(BuildContext context) {
