@@ -16,6 +16,7 @@ Widget addContainer({
   required void Function() onTapCancel,
   required void Function(bool) onToggle,
   required bool state,
+  String btnText = 'Save',
 }) {
   return Container(
       width: width,
@@ -66,7 +67,7 @@ Widget addContainer({
               children: [
                 defaultButton(
                     text: 'Cancel', onTap: onTapCancel, width: width / 3),
-                defaultButton(text: 'Save', onTap: onTapSave, width: width / 3)
+                defaultButton(text: btnText, onTap: onTapSave, width: width / 3)
               ],
             )
           ],

@@ -30,7 +30,11 @@ class LogOutSuccessScanStates extends ScanStates {}
 
 class GetBarcodeLoadingScanStates extends ScanStates {}
 
-class GetBarcodeSuccessScanStates extends ScanStates {}
+class GetBarcodeSuccessScanStates extends ScanStates {
+  late Map<String, dynamic>? barcode;
+
+  GetBarcodeSuccessScanStates(this.barcode);
+}
 
 class GetBarcodeErrorScanStates extends ScanStates {
   late String error;

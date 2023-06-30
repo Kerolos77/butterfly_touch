@@ -66,7 +66,10 @@ class RegistrationCubit extends Cubit<RegistrationState> {
           .doc(constUid)
           .get()
           .then((value) {
-        CacheHelper.putData(key: 'name', value: value.data()!['name']);
+        CacheHelper.putData(
+            key: 'name',
+            value:
+                '${value.data()!['firstName']} ${value.data()!['lastName']}');
         CacheHelper.putData(key: 'email', value: value.data()!['email']);
       });
       emit(LoginSuccessRegistrationState(value.user!.uid));

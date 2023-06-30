@@ -13,8 +13,6 @@ class UserCubit extends Cubit<UserStates> {
 
   Map<String, dynamic>? user;
 
-  List<QueryDocumentSnapshot<Map<String, dynamic>>> infractionsUserData = [];
-
   List<QueryDocumentSnapshot<Map<String, dynamic>>> couponData = [];
 
   bool obscurePassFlag = true;
@@ -63,12 +61,16 @@ class UserCubit extends Cubit<UserStates> {
       endDate: endDate,
     )
         .then((value) {
-      _firebaseReposatory.updateScore(
-          score: ((int.parse(user?['score'])) - 50).toString());
+      updateScore();
       emit(CreateCouponSuccessState());
     }).catchError((error) {
       emit(CreateCouponErrorState(error.toString()));
     });
+  }
+
+  void updateScore() {
+    _firebaseReposatory.updateScore(
+        score: ((int.parse(user?['score'])) - 50).toString());
   }
 
   void getCoupons() {

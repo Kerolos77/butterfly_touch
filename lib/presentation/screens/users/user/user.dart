@@ -27,7 +27,6 @@ class _UserScreenState extends State<UserScreen> {
           ..getCoupons(),
         child: BlocConsumer<UserCubit, UserStates>(
           listener: (BuildContext context, UserStates state) {
-            print('..........**************${state}');
             if (state is GetUserErrorState) {
               print(state.error);
             }
@@ -45,8 +44,6 @@ class _UserScreenState extends State<UserScreen> {
           },
           builder: (BuildContext context, UserStates state) {
             UserCubit userCube = UserCubit.get(context);
-            double width = MediaQuery.of(context).size.width;
-            double height = MediaQuery.of(context).size.height;
 
             return RefreshIndicator(
                 onRefresh: () async {
@@ -81,7 +78,7 @@ class _UserScreenState extends State<UserScreen> {
                               alignment: Alignment.bottomLeft,
                               children: [
                                 Card(
-                                  elevation: 1,
+                                  elevation: 0,
                                   child: Stack(
                                     alignment: Alignment.topRight,
                                     children: [
@@ -127,14 +124,14 @@ class _UserScreenState extends State<UserScreen> {
                                               text:
                                                   '${CacheHelper.getData(key: 'name')}',
                                               size: 15),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 5,
                                           ),
                                           defaultText(
                                               text:
                                                   '${CacheHelper.getData(key: 'email')}',
                                               size: 15),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 5,
                                           ),
                                         ],

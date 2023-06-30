@@ -1,3 +1,4 @@
+import 'package:butterfly_touch/constants/conestant.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,6 +26,7 @@ class _UserScanState extends State<UserScan> {
   bool lightFlag = false;
   bool progressFlag = false;
   TextEditingController descriptionController = TextEditingController();
+  Map<String, dynamic>? barcode;
 
   var formKey = GlobalKey<FormState>();
 
@@ -54,32 +56,35 @@ class _UserScanState extends State<UserScan> {
     double height = MediaQuery.of(context).size.height;
     late ScanCubit cub;
     return BlocProvider(
-        create: (BuildContext context) => ScanCubit(),
+        create: (BuildContext context) => ScanCubit()..getUserData(),
         child: BlocConsumer<ScanCubit, ScanStates>(
             listener: (BuildContext context, ScanStates state) {
           if (state is GetBarcodeLoadingScanStates) {
+            cub.changeShowContainerFlag(false);
             progressFlag = true;
           }
           if (state is GetBarcodeSuccessScanStates) {
-            progressFlag = false;
             cub.changeShowContainerFlag(true);
-            descriptionController.text = cub.barcode?['description'];
-          }
-          if (state is GetBarcodeLoadingScanStates) {
+            barcode = state.barcode;
             progressFlag = false;
+            showToast(message: 'Done');
+          }
+          if (state is GetBarcodeErrorScanStates) {
+            cub.changeShowContainerFlag(false);
+            progressFlag = false;
+            controller.resume();
+            showToast(message: state.error);
           }
           if (state is CreateBarcodeLoadingScanStates) {
             cub.changeShowContainerFlag(false);
             progressFlag = true;
-            descriptionController.text = '';
-            showToast(message: 'Done');
           }
 
           if (state is CreateBarcodeSuccessScanStates) {
             controller.resume();
-
             cub.changeShowContainerFlag(false);
             progressFlag = false;
+            showToast(message: 'Done');
           }
 
           if (state is CreateBarcodeErrorScanStates) {
@@ -89,6 +94,9 @@ class _UserScanState extends State<UserScan> {
           }
         }, builder: (BuildContext context, ScanStates state) {
           cub = ScanCubit.get(context);
+          if (barcode != null) {
+            descriptionController.text = barcode?['description'];
+          }
           return Scaffold(
             backgroundColor: Colors.black,
             body: DoubleBackToCloseApp(
@@ -100,7 +108,7 @@ class _UserScanState extends State<UserScan> {
                   alignment: Alignment.bottomCenter,
                   children: [
                     SizedBox(
-                      width: width, // custom wrap size
+                      width: width,
                       height: height,
                       child: ScanView(
                         controller: controller,
@@ -110,7 +118,6 @@ class _UserScanState extends State<UserScan> {
                           setState(() {
                             qrcode = data;
                             controller.pause();
-
                             cub.getBarcode(barcode: qrcode);
                           });
                         },
@@ -148,26 +155,30 @@ class _UserScanState extends State<UserScan> {
                             ],
                           )
                         : const SizedBox(),
-                    cub.showContainerFlag
-                        ? addContainer(
+                    cub.showContainerFlag && barcode != null
+                        ?
+                        // const SizedBox()
+                        addContainer(
                             width: width,
                             height: height,
                             readOnly: true,
+                            btnText: 'Buy',
                             descriptionController: descriptionController,
                             onTapCancel: () {
                               cub.changeShowContainerFlag(false);
                               controller.resume();
                             },
                             onTapSave: () {
-                              controller.pause();
-                              cub.createBarcode(
-                                  barcode: qrcode,
-                                  isGood: cub.envFlag,
-                                  description: descriptionController.text);
+                              barcode!['isGood']
+                                  ? cub.updateScore(ChangeScore.increase)
+                                  : cub.updateScore(ChangeScore.decrease);
+
+                              cub.changeShowContainerFlag(false);
+                              controller.resume();
                             },
                             qrcode: qrcode,
                             onToggle: (value) {},
-                            state: cub.barcode?['isGood'],
+                            state: barcode!['isGood'],
                           )
                         : const SizedBox(),
                   ],

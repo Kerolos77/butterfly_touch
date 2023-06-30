@@ -81,11 +81,11 @@ class FirebaseReposatory {
         .set(barcodeDataModel.toMap());
   }
 
-  Future<void> deleteBarcode({
-    required String barcode,
-  }) async {
-    return firebase.collection('barcodes').doc(barcode).delete();
-  }
+  // Future<void> deleteBarcode({
+  //   required String barcode,
+  // }) async {
+  //   return firebase.collection('barcodes').doc(barcode).delete();
+  // }
 
   Future<void> createCoupon({
     required String coupon,

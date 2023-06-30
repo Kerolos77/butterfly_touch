@@ -1,8 +1,9 @@
+import 'package:butterfly_touch/presentation/screens/regisation_screen.dart';
 import 'package:butterfly_touch/presentation/screens/users/admin/admin_scan.dart';
+import 'package:butterfly_touch/presentation/screens/users/user/user_home.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/conestant.dart';
-import '../../presentation/screens/regisation_screenart';
 import '../widgets/global/logo.dart';
 
 class SplashScreen extends StatefulWidget {
