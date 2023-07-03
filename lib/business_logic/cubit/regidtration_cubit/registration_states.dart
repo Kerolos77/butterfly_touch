@@ -28,20 +28,6 @@ class LoginErrorRegistrationState extends RegistrationState {
   LoginErrorRegistrationState(this.error);
 }
 
-class GoogleLoadingRegistrationState extends RegistrationState {}
-
-class GoogleSuccessRegistrationState extends RegistrationState {
-  late String uid;
-
-  GoogleSuccessRegistrationState(this.uid);
-}
-
-class GoogleErrorRegistrationState extends RegistrationState {
-  late String error;
-
-  GoogleErrorRegistrationState(this.error);
-}
-
 class LogoutLoadingRegistrationState extends RegistrationState {}
 
 class LogoutSuccessRegistrationState extends RegistrationState {}

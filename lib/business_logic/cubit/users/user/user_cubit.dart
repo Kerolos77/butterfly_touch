@@ -22,13 +22,11 @@ class UserCubit extends Cubit<UserStates> {
   final FirebaseReposatory _firebaseReposatory = FirebaseReposatory();
 
   void getUserData() {
-    // emit(GetUserLoadingState());
     _firebaseReposatory.getUserData().then((value) {
       user = value.data() as Map<String, dynamic>;
       checkScore();
       getCoupons();
       emit(GetUserSuccessState());
-      // print(user?['score']);
     }).catchError((error) {
       emit(GetUserErrorState(error.toString()));
     });
@@ -37,16 +35,6 @@ class UserCubit extends Cubit<UserStates> {
   void logout() {
     _firebaseReposatory.logout();
     emit(LogOutSuccessUserState());
-  }
-
-  void changeObscurePassFlag(flag) {
-    obscurePassFlag = flag;
-    emit(ChangeObscurePassFlagUserState());
-  }
-
-  void changeObscureConfirmFlag(flag) {
-    obscureConfirmFlag = flag;
-    emit(ChangeObscureConfirmFlagUserState());
   }
 
   void createCoupon({
@@ -71,6 +59,7 @@ class UserCubit extends Cubit<UserStates> {
   void updateScore() {
     _firebaseReposatory.updateScore(
         score: ((int.parse(user?['score'])) - 50).toString());
+    getUserData();
   }
 
   void getCoupons() {

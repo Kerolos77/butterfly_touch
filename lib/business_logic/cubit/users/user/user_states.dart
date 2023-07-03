@@ -2,13 +2,7 @@ abstract class UserStates {}
 
 class InitialUserState extends UserStates {}
 
-class GetUserLoadingState extends UserStates {}
-
 class GetUserSuccessState extends UserStates {}
-
-class GetInfractionSuccessState extends UserStates {}
-
-class GetUserCachedSuccessState extends UserStates {}
 
 class GetUserErrorState extends UserStates {
   final String error;
@@ -21,10 +15,6 @@ class GetInfractionErrorState extends UserStates {
 
   GetInfractionErrorState(this.error);
 }
-
-class ChangeObscurePassFlagUserState extends UserStates {}
-
-class ChangeObscureConfirmFlagUserState extends UserStates {}
 
 class LogOutSuccessUserState extends UserStates {}
 

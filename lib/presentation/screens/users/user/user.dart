@@ -28,7 +28,9 @@ class _UserScreenState extends State<UserScreen> {
         child: BlocConsumer<UserCubit, UserStates>(
           listener: (BuildContext context, UserStates state) {
             if (state is GetUserErrorState) {
-              print(state.error);
+              showToast(
+                message: state.error,
+              );
             }
             if (state is LogOutSuccessUserState) {
               showToast(
@@ -45,134 +47,133 @@ class _UserScreenState extends State<UserScreen> {
           builder: (BuildContext context, UserStates state) {
             UserCubit userCube = UserCubit.get(context);
 
-            return RefreshIndicator(
-                onRefresh: () async {
-                  userCube.getUserData();
-                  userCube.getCoupons();
-                },
-                child: Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Colors.white,
-                    elevation: 0,
-                    actions: [
-                      IconButton(
-                        onPressed: () {
-                          userCube.logout();
-                        },
-                        icon: const Icon(
-                          FontAwesomeIcons.signOutAlt,
-                          size: 20,
-                          color: Colors.green,
-                        ),
-                      )
-                    ],
-                  ),
-                  backgroundColor: Colors.white,
-                  body: SafeArea(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8, right: 8),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Stack(
-                              alignment: Alignment.bottomLeft,
-                              children: [
-                                Card(
-                                  elevation: 0,
-                                  child: Stack(
-                                    alignment: Alignment.topRight,
-                                    children: [
-                                      SvgPicture.asset(
-                                        "assets/image/background_login_top.svg",
-                                        color: const Color.fromRGBO(
-                                            26, 188, 0, 0.8274509803921568),
-                                      ),
-                                      Column(
-                                        children: [
-                                          SizedBox(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.06,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                          ),
-                                          CircleAvatar(
-                                            backgroundColor:
-                                                const Color.fromRGBO(
-                                                    161, 222, 200, 0.7),
-                                            radius: 70,
-                                            child: userCube.user != null
-                                                ? defaultText(
-                                                    text:
-                                                        '${userCube.user?['score']}',
-                                                    color: Colors.white,
-                                                    size: 50.0,
-                                                  )
-                                                : const CircularProgressIndicator(
-                                                    color: Colors.white,
-                                                  ),
-                                          ),
-                                          SizedBox(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.06,
-                                          ),
-                                          defaultText(
-                                              text:
-                                                  '${CacheHelper.getData(key: 'name')}',
-                                              size: 15),
-                                          const SizedBox(
-                                            height: 5,
-                                          ),
-                                          defaultText(
-                                              text:
-                                                  '${CacheHelper.getData(key: 'email')}',
-                                              size: 15),
-                                          const SizedBox(
-                                            height: 5,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SvgPicture.asset(
-                                  "assets/image/background_login_bottom.svg",
-                                  color: const Color.fromRGBO(
-                                      26, 188, 0, 0.8274509803921568),
-                                ),
-                              ],
-                            ),
-                            Expanded(
-                                child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: userCube.couponData.isNotEmpty
-                                  ? ListView.separated(
-                                      itemBuilder: (context, index) => coupon(
-                                        couponId: userCube.couponData[index]
-                                            .data()['coupon'],
-                                        startDate: userCube.couponData[index]
-                                            .data()['startDate'],
-                                        endDate: userCube.couponData[index]
-                                            .data()['endDate'],
-                                      ),
-                                      separatorBuilder: (context, index) =>
-                                          const SizedBox(height: 20),
-                                      itemCount: userCube.couponData.length,
-                                    )
-                                  : Center(
-                                      child: defaultText(
-                                        text: 'No Coupons Found',
-                                      ),
-                                    ),
-                            )),
-                          ]),
+            return Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.white,
+                elevation: 0,
+                actions: [
+                  IconButton(
+                    onPressed: () {
+                      userCube.logout();
+                    },
+                    icon: const Icon(
+                      FontAwesomeIcons.signOutAlt,
+                      size: 20,
+                      color: Colors.green,
                     ),
+                  )
+                ],
+              ),
+              backgroundColor: Colors.white,
+              body: SafeArea(
+                child: RefreshIndicator(
+                  onRefresh: () async {
+                    userCube.getUserData();
+                    userCube.getCoupons();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8, right: 8),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Stack(
+                            alignment: Alignment.bottomLeft,
+                            children: [
+                              Card(
+                                elevation: 0,
+                                child: Stack(
+                                  alignment: Alignment.topRight,
+                                  children: [
+                                    SvgPicture.asset(
+                                      "assets/image/background_login_top.svg",
+                                      color: const Color.fromRGBO(
+                                          26, 188, 0, 0.8274509803921568),
+                                    ),
+                                    Column(
+                                      children: [
+                                        SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.06,
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                        ),
+                                        CircleAvatar(
+                                          backgroundColor: const Color.fromRGBO(
+                                              161, 222, 200, 0.7),
+                                          radius: 70,
+                                          child: userCube.user != null
+                                              ? defaultText(
+                                                  text:
+                                                      '${userCube.user?['score']}',
+                                                  color: Colors.white,
+                                                  size: 50.0,
+                                                )
+                                              : const CircularProgressIndicator(
+                                                  color: Colors.white,
+                                                ),
+                                        ),
+                                        SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.06,
+                                        ),
+                                        defaultText(
+                                            text:
+                                                '${CacheHelper.getData(key: 'name')}',
+                                            size: 15),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        defaultText(
+                                            text:
+                                                '${CacheHelper.getData(key: 'email')}',
+                                            size: 15),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SvgPicture.asset(
+                                "assets/image/background_login_bottom.svg",
+                                color: const Color.fromRGBO(
+                                    26, 188, 0, 0.8274509803921568),
+                              ),
+                            ],
+                          ),
+                          Expanded(
+                              child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: userCube.couponData.isNotEmpty
+                                ? ListView.separated(
+                                    itemBuilder: (context, index) => coupon(
+                                      couponId: userCube.couponData[index]
+                                          .data()['coupon'],
+                                      startDate: userCube.couponData[index]
+                                          .data()['startDate'],
+                                      endDate: userCube.couponData[index]
+                                          .data()['endDate'],
+                                    ),
+                                    separatorBuilder: (context, index) =>
+                                        const SizedBox(height: 20),
+                                    itemCount: userCube.couponData.length,
+                                  )
+                                : Center(
+                                    child: defaultText(
+                                      text: 'No Coupons Found',
+                                    ),
+                                  ),
+                          )),
+                        ]),
                   ),
-                ));
+                ),
+              ),
+            );
           },
         ));
   }

@@ -81,10 +81,9 @@ class ScanCubit extends Cubit<ScanStates> {
     emit(GetBarcodeLoadingScanStates());
     _firebaseReposatory.getBarcode(barcode: barcode).then((value) {
       barcode = value.data() as Map<String, dynamic>;
-      print(barcode);
       emit(GetBarcodeSuccessScanStates(value.data()));
     }).catchError((error) {
-      emit(GetBarcodeErrorScanStates(error));
+      emit(GetBarcodeErrorScanStates(error.toString()));
     });
   }
 }

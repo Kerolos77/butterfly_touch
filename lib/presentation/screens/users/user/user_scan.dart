@@ -59,6 +59,7 @@ class _UserScanState extends State<UserScan> {
         create: (BuildContext context) => ScanCubit()..getUserData(),
         child: BlocConsumer<ScanCubit, ScanStates>(
             listener: (BuildContext context, ScanStates state) {
+          print('***************************************$state');
           if (state is GetBarcodeLoadingScanStates) {
             cub.changeShowContainerFlag(false);
             progressFlag = true;
@@ -73,7 +74,7 @@ class _UserScanState extends State<UserScan> {
             cub.changeShowContainerFlag(false);
             progressFlag = false;
             controller.resume();
-            showToast(message: state.error);
+            showToast(message: 'Not Found Data');
           }
           if (state is CreateBarcodeLoadingScanStates) {
             cub.changeShowContainerFlag(false);
@@ -96,7 +97,7 @@ class _UserScanState extends State<UserScan> {
           cub = ScanCubit.get(context);
           if (barcode != null) {
             descriptionController.text = barcode?['description'];
-          }
+          } else {}
           return Scaffold(
             backgroundColor: Colors.black,
             body: DoubleBackToCloseApp(

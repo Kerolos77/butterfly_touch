@@ -3,12 +3,7 @@ import 'package:butterfly_touch/presentation/widgets/global/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:ticket_material/ticket_material.dart';
 
-// start date
-// Exp date
-//ba2i kam youm
-// 30% discount
-
-Widget ticket({
+Widget ticketLeft({
   required String startDate,
   required String endDate,
   required String daysLeft,
@@ -30,7 +25,7 @@ Widget ticket({
               ),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(
@@ -107,7 +102,7 @@ Widget ticket({
   );
 }
 
-Widget rightTicket() {
+Widget ticketRight() {
   return const Icon(
     Icons.discount,
     size: 20,
@@ -127,12 +122,12 @@ Widget coupon({
   return TicketMaterial(
     height: 140,
     colorBackground: Colors.black87,
-    leftChild: ticket(
+    leftChild: ticketLeft(
       startDate: startDate,
       endDate: endDate,
       couponId: couponId,
       daysLeft: daysLeft.toString(),
     ),
-    rightChild: rightTicket(),
+    rightChild: ticketRight(),
   );
 }

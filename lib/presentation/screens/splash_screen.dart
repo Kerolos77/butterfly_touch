@@ -7,15 +7,18 @@ import '../../constants/conestant.dart';
 import '../widgets/global/logo.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  int splashtime = 0;
+  int splashTime = 10;
 
+  @override
   void initState() {
-    Future.delayed(Duration(seconds: splashtime), () async {
+    Future.delayed(Duration(seconds: splashTime), () async {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
         Widget widget;
         if (constUid != null && constUid != '') {
